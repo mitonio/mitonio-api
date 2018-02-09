@@ -4,7 +4,7 @@ const busMiddleware = require('../middlewares/busMiddleware.middleware');
 
 const router = express.Router();
 
-router.get('/line/:busNumber', busController.findBusLocation);
+router.get('/line/:busNumber', busController.findBusByLine);
 router.get('/stop/:busNumber', busController.findBusLocalization);
 
 module.exports = router;
