@@ -6,6 +6,5 @@ const router = express.Router();
 
 router.get('/line/:busNumber', busController.findBusLocation);
 router.get('/stop/:busNumber', busController.findBusLocalization);
-router.get('/:hall', busMiddleware.getTokenAuth, busController.findStopsByBusHall);
 
 module.exports = router;
