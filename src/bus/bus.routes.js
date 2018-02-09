@@ -1,6 +1,6 @@
 const express = require('express');
-const busController = require('../controllers/Bus.controller');
-const busMiddleware = require('../middlewares/busMiddleware.middleware');
+const busController = require('./Bus.controller');
+const busMiddleware = require('./busMiddleware.middleware');
 
 const router = express.Router();
 
