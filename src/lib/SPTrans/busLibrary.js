@@ -5,14 +5,14 @@ const baseUrl = 'http://api.olhovivo.sptrans.com.br/v2.1';
 module.exports.loadApi = async (apiKey) => {
   try {
     const data = await Axios.post(`${baseUrl}/Login/Autenticar?token=${apiKey}`);
-
+    
     return { ...data, error: null}; 
   } catch (error) {
     return {data: null, error};
   }
 };
 
-module.exports.findBusByLine = async (line, apiKey, authCookie) => {
+module.exports.findBusByLine = async (line, authCookie) => {
     try {
       const { data } = await Axios.get(`${baseUrl}/Linha/Buscar?termosBusca=${line}`, {
         withCredentials: true,
@@ -23,11 +23,12 @@ module.exports.findBusByLine = async (line, apiKey, authCookie) => {
       
       return { data, error: null };
     } catch (error) {
+      console.log('error: ', error);
       return {data: null, error};
     }
 };
 
-module.exports.findStopsByBusLine = async (hallNumber, apiKey, authCookie) => {
+module.exports.findStopsByBusLine = async (hallNumber, authCookie) => {
   try {
     const { data } = await Axios.get(`${baseUrl}/Parada/BuscarParadasPorCorredor?codigoCorredor=${hallNumber}`, {
       withCredentials: true,
