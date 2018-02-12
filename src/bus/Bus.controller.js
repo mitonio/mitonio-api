@@ -1,17 +1,16 @@
 const busLibrary = require('../lib/SPTrans/busLibrary');
-const apiKey = '5243fc248bc5f64a2f29f29b106e9b1b6a0985a837063ce76a12e4bea7a325a9';
 
 const BusController = (busService = busLibrary) => ({
 
   async findBusByLine(req, res) {
     try {
-      const { busLines } = await busService.findBusByLine(req.params.busNumber, req.body.auth.data);
-
-      if (!busLines) {
-        return res.status(204).json({ data: await busLines, error: null });
+      const busLines = await busService.findBusByLine(req.params.busNumber, req.body.auth.data);
+      
+      if (!busLines.data) {
+        return res.status(204).json({ data: busLines.data, error: null });
       }
 
-      return res.status(200).json({ data: await busLines, error: null });
+      return res.status(200).json({ data: busLines.data, error: null });
     } catch (error) {
       return res.json({ data: null, error });
     }
@@ -21,7 +20,7 @@ const BusController = (busService = busLibrary) => ({
     try {
       const busStop = await busService.findStopsByBusLine(req.params.hall, req.body.auth.data);
 
-      return res.json({ data: await busStop.data, error: null });
+      return res.json({ data: busStop.data, error: null });
     } catch (error) {
       return res.json({ data: null, error });
     }
@@ -31,7 +30,7 @@ const BusController = (busService = busLibrary) => ({
     try {
       const busLines = await busService.findBusLocalization(req.params.busNumber, req.body.auth.data);
 
-      return res.json({ data: busLines, error: null });
+      return res.json({ data: busLines.data, error: null });
     } catch (error) {
       return res.json({ data: null, error });
     }
