@@ -6,7 +6,7 @@ module.exports.loadApi = async (apiKey) => {
   try {
     const data = await Axios.post(`${baseUrl}/Login/Autenticar?token=${apiKey}`);
 
-    return {...data, error: null}; 
+    return { ...data, error: null}; 
   } catch (error) {
     return {data: null, error};
   }
@@ -41,3 +41,18 @@ module.exports.findStopsByBusLine = async (hallNumber, apiKey, authCookie) => {
     return {data: null, error};
   }
 };
+
+module.exports.findBusLocalization = async (busNumber, authCookie) => {
+  try {
+    const { data } = await Axios.get(`${baseUrl}/Parada/Buscar?termosBusca=${busNumber}`, {
+      withCredentials: true,
+      headers: {
+        cookie: authCookie
+      }
+    });
+    
+    return { data, error: null };
+  } catch (error) {
+    return {data: null, error};
+  }
+}
