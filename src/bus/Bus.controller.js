@@ -5,9 +5,13 @@ const BusController = (busService = busLibrary) => ({
 
   async findBusByLine(req, res) {
     try {
-      const busLines = await busService.findBusByLine(req.params.busNumber, req.body.auth.data);
+      const { busLines } = await busService.findBusByLine(req.params.busNumber, req.body.auth.data);
 
-      return res.json({ data: await busLines.data, error: null });
+      if (!busLines) {
+        return res.status(204).json({ data: await busLines, error: null });
+      }
+
+      return res.status(200).json({ data: await busLines, error: null });
     } catch (error) {
       return res.json({ data: null, error });
     }
