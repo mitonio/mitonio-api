@@ -4,7 +4,7 @@ dotenv.config();
 
 module.exports = {
   app: {
-    host: 'localhost',
+    host: process.env.host,
     port: process.env.PORT || 3001,
   }, externalServices: {
     busLibraryService: process.env.busLibraryService || 'http://api.olhovivo.sptrans.com.br/v2.1',
