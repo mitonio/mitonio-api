@@ -1,6 +1,6 @@
 const Axios = require('axios').default;
-
-const baseUrl = 'http://api.olhovivo.sptrans.com.br/v2.1';
+const env = require('../../../config/environment');
+const baseUrl = env.externalServices.busLibraryService;
 
 module.exports.loadApi = async (apiKey) => {
   try {
