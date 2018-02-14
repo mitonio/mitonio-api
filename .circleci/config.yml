@@ -14,6 +14,11 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
+    environment: 
+      - host: https://api-mitonio-react.herokuapp.com
+      - port: 3001
+      - busLibraryService: http://api.olhovivo.sptrans.com.br/v2.1
+      - busLibraryToken: 5243fc248bc5f64a2f29f29b106e9b1b6a0985a837063ce76a12e4bea7a325a9
     working_directory: ~/mitonio-api
 
     steps:
